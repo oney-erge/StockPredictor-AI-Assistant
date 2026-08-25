@@ -14,6 +14,32 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  delivery:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Check launcher syntax
+        shell: pwsh
+        run: |
+          bash -n run.sh run.command scripts/start-local.sh scripts/stop-local.sh
+          shellcheck --severity=error run.sh run.command scripts/start-local.sh scripts/stop-local.sh
+          $errors = $null
+          [void][System.Management.Automation.Language.Parser]::ParseFile((Resolve-Path run.ps1), [ref]$null, [ref]$errors)
+          if ($errors.Count) { $errors | Format-List | Out-String | Write-Error }
+      - name: Start the application
+        run: docker compose up --detach --build
+      - name: Wait for the API and dashboard
+        run: |
+          curl --fail --retry 60 --retry-all-errors --retry-delay 2 http://127.0.0.1:8000/health
+          curl --fail --retry 60 --retry-all-errors --retry-delay 2 http://127.0.0.1:8501/
+      - name: Show container logs on failure
+        if: failure()
+        run: docker compose logs
+      - name: Stop containers
+        if: always()
+        run: docker compose down --volumes
+
   tests:
     runs-on: ubuntu-latest
     strategy:

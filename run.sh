@@ -19,4 +19,6 @@ esac
 uv=$(find_uv || true)
 if [ "$action" = doctor ]; then [ -n "$uv" ] || { echo "uv is missing. Run ./run.sh once." >&2; exit 1; }; "$uv" run --frozen --no-sync python -c "import stockpredictor; print('Environment: ready')"; check "$api_url/health" 2>/dev/null && echo "API: $api_url" || echo "API: not running"; check "$dashboard_url" 2>/dev/null && echo "Dashboard: $dashboard_url" || echo "Dashboard: not running"; exit 0; fi
 [ -n "$uv" ] || uv=$(install_uv); sync=(sync --frozen); [ "$action" = repair ] && sync+=(--reinstall); retry "dependency synchronization" "$uv" "${sync[@]}"
-exec ./scripts/start-local.sh $([ "$no_browser" -eq 1 ] && echo --no-browser)
+launch_args=()
+[ "$no_browser" -eq 1 ] && launch_args+=(--no-browser)
+exec ./scripts/start-local.sh "${launch_args[@]}"

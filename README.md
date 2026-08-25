@@ -12,11 +12,14 @@ does not place brokerage orders.
 Quick Start
 -----------
 
+Use `run.bat` on Windows, `run.command` on macOS, or `run.sh` on Linux.
+The launcher installs a pinned `uv`, synchronizes the locked environment,
+starts both services, waits for readiness, and opens the dashboard. Re-running
+it reuses the current environment. The same launcher accepts `doctor`,
+`repair`, `docker`, `logs`, and `stop`.
+
 ```powershell
-python -m venv .venv
-.\.venv\Scripts\python -m pip install -U pip
-.\.venv\Scripts\python -m pip install -e ".[dev]"
-Copy-Item configs/default.example.yaml configs/default.yaml
+.\run.bat
 ```
 
 Run the API:
