@@ -22,6 +22,14 @@ it reuses the current environment. The same launcher accepts `doctor`,
 .\run.bat
 ```
 
+```bash
+./run.command  # macOS
+./run.sh       # Linux
+```
+
+Use `.\run.ps1` from PowerShell. Add any lifecycle action after the platform
+launcher, such as `.\run.ps1 doctor` or `./run.sh docker`.
+
 Run the API:
 
 ```powershell
