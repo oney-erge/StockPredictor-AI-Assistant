@@ -30,6 +30,10 @@ it reuses the current environment. The same launcher accepts `doctor`,
 Use `.\run.ps1` from PowerShell. Add any lifecycle action after the platform
 launcher, such as `.\run.ps1 doctor` or `./run.sh docker`.
 
+Setup checks disk space, prevents concurrent dependency changes, retries
+temporary network failures up to three times, and records failures in
+`.setup/install.log`.
+
 Run the API:
 
 ```powershell
