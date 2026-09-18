@@ -28,7 +28,7 @@ dev = [
     "pytest>=8.0",
     "ruff>=0.16",
     # Browser UI diagnosis (Streamlit dashboard at :8501): after installing, run: python -m playwright install chromium
-    "playwright>=1.40",
+    "playwright>=1.62.0",
 ]
 
 [project.scripts]
