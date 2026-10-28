@@ -77,7 +77,7 @@ function Ensure-StockPredictor {
     Write-Step "Creating StockPredictor .venv"
     python -m venv .venv
     & $python -m pip install -U pip
-    & $python -m pip install -e ".[dev]"
+    & $python -m pip install -e . --group dev
     Write-Detail "Python: $python"
     return $python
 }

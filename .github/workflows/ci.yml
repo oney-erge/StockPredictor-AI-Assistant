@@ -52,7 +52,7 @@ jobs:
       - uses: astral-sh/setup-uv@07a047e608db84b3d8c06cd9a7c7dcc9c355c18e # v10.3.2
         with:
           python-version: ${{ matrix.python-version }}
-      - run: uv sync --frozen --extra dev
+      - run: uv sync --frozen
       - run: uv run --frozen pytest
 
   quality:
@@ -62,7 +62,7 @@ jobs:
       - uses: astral-sh/setup-uv@07a047e608db84b3d8c06cd9a7c7dcc9c355c18e # v10.3.2
         with:
           python-version: "3.12"
-      - run: uv sync --frozen --extra dev
+      - run: uv sync --frozen
       - run: uv run --frozen ruff check .
       - run: uv run --frozen --with pip-audit pip-audit
 
