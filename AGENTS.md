@@ -18,7 +18,8 @@ Windows development:
 
 ```powershell
 python -m venv .venv
-.\.venv\Scripts\python -m pip install -e ".[dev]"
+.\.venv\Scripts\python -m pip install -U pip
+.\.venv\Scripts\python -m pip install -e . --group dev
 Copy-Item configs/default.example.yaml configs/default.yaml
 .\scripts\start-local.ps1
 .\scripts\stop-local.ps1
