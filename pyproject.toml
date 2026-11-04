@@ -25,8 +25,8 @@ dependencies = [
 
 [dependency-groups]
 dev = [
-    "pytest>=8.0",
-    "ruff>=0.17.2",
+    "pytest>=9.2.0",
+    "ruff>=0.17.3",
     # Browser UI diagnosis (Streamlit dashboard at :8501): after installing, run: python -m playwright install chromium
     "playwright>=1.64.1",
 ]
