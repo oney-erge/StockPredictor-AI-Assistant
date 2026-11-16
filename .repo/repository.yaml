@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "repository": {"id": "oney-erge/StockPredictor-AI-Assistant", "owner": "oney-erge", "maintenance": "unclassified", "interfaces": ["browser-ui", "api", "cli"]},
+  "capabilities": ["ml-research", "persistent-data"],
+  "components": [{"id": "application", "root": "src/stockpredictor"}],
+  "checks": {"core": {"argv": ["python", "-m", "pytest", "tests/test_core.py", "tests/test_api.py", "-q"], "cwd": ".", "timeout_seconds": 180, "effects": "local-test-files"}},
+  "journeys": [{"id": "analysis-to-backtest", "user_outcome": "Review a research analysis and a clearly qualified backtest", "checks": ["core"], "additional_evidence_needed": ["fixed dataset and time-split provenance", "stale or unavailable market data", "browser accessibility", "live providers only when explicitly scoped"]}],
+  "state": {"owner": "src/stockpredictor", "invariant": "Distinguish observed, cached and synthetic data; no broker orders."},
+  "evidence": {"status": "not-collected-by-repoctl"},
+  "agent": {"instruction_entry": "AGENTS.md", "command_trust": "external-to-repository"}
+}
