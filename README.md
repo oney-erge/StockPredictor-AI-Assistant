@@ -21,7 +21,8 @@ with optional news summaries from a local LLM.
 The launcher installs a pinned `uv`, syncs the locked environment, starts the
 API (port 8000) and the dashboard (port 8501), and opens the dashboard. Run it
 again with `doctor`, `repair`, `docker`, `logs` or `stop`, for example
-`.\run.ps1 doctor`.
+`.\run.ps1 doctor`. Setup failures are recorded in `.setup/install.log`;
+service logs and process ID files are written to `.logs/`.
 
 ## What it does
 
